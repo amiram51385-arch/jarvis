@@ -1,489 +1,3 @@
-
-Claude finished the response
-خب ببین 
-من الان میخوام یه بات یا یچیزی درست کنم 
-برام یه کاری کنه 
-بهم پیشنهاد بده چی درست کنم
-
-Jun 3
-چه نوع کاری بیشتر بهدردت میخوره؟
-
-Q: هدف اصلیت چیه؟
-A: یه ابزار خلاقانه / سرگرمی
-
-Q: میخوای کجا ازش استفاده کنی؟
-A: توی تلگرام یا واتساپ
-
-Jun 3
-جالبه! یه ابزار خلاقانه توی تلگرام یا واتساپ — گزینه‌های خوبی داریم.
-
-Q: کدوم حس بهتر میده؟
-A: بات شخصیت‌محور (مثل Jarvis — باهاش حرف بزنی، جواب باهوش بده)
-
-Jun 3
-خوب، پس یه بات شخصیت‌محور توی تلگرام — این دقیقاً همون چیزیه که قبلاً روی Jarvis کار کردیم.
-
-چند تا پیشنهاد مشخص دارم:
-
-۱. Jarvis تلگرامی (ادامه همون پروژه) همون شخصیت فارسی رسمی‌با‌شوخ‌طبعی که طراحی کردیم، بیاریمش روی تلگرام. با Python + python-telegram-bot وصلش کنیم به Claude API. هر بار باهاش حرف بزنی، جواب با شخصیت میده.
-
-۲. بات آینه‌ای (چیز جدید) یه بات که سبک حرف زدنت رو یاد میگیره و مثل خودت جواب میده — مثل یه نسخه دیجیتال از خودت. برای دیانا یا دوستات جالب میشه.
-
-۳. بات Cohen (مرتبط به پروژه آهنگت) یه بات که توی حال و هوای Leonard Cohen جواب میده — شعر، تاریکی، طعنه. میتونه کمک کنه با لیریک‌نویسی هم.
-
-کدوم بیشتر کشش داری؟ یا میخوای ترکیبی باشه؟
-
-ببین میتونی سایت کنیم ؟
-که هم رایگان دربیاد و اینکه صدا داشته باشه و حجرف بزنیم ؟
-
-Jun 3
-آره، کاملاً ممکنه! یه وب‌اپ بسازیم که:
-
-مجانی هاست بشه — روی Vercel یا GitHub Pages
-صدا داشته باشه — هم میکروفون (تو حرف بزنی) هم TTS (بات جواب بده با صدا)
-شخصیت Jarvis داشته باشه — فارسی، رسمی‌با‌شوخ‌طبعی
-قبل از شروع، یه چیز مهم بپرسم:
-
-Q: آیا Claude API Key داری؟
-A: نه، باید بدون API Key کار کنه
-
-Jun 3
-خب، بدون API Key گزینه‌های خوبی داریم:
-
-برای مغز بات:
-
-Gemini API — گوگل رایگان میده (generous free tier)
-Groq — سریع‌ترین، رایگان، مدل‌های خوب
-OpenRouter — چند مدل رایگان داره
-برای صدا:
-
-Web Speech API — مرورگر خودش داره، کاملاً رایگان، نیاز به هیچ سرویسی نیست
-میکروفون ✓
-Text-to-Speech فارسی ✓
-هاست:
-
-GitHub Pages یا Vercel — رایگان
-پیشنهادم اینه با Groq (رایگان + سریع) + Web Speech API شروع کنیم. فقط یه Groq API Key رایگان لازمه که در ۲ دقیقه میشه ساخت.
-
-میخوای همین الان شروع کنیم بسازیم؟ یا اول بگو شخصیت بات چطور باشه — همون Jarvis فارسی یا چیز دیگه‌ای؟
-
-خب حله شروع کنیم ریز ریز بگو چکار کنم
-
-Jun 3
-بریم! اول باید Groq API Key رایگان بگیری.
-
-مرحله ۱ — ساخت اکانت Groq
-
-برو به console.groq.com
-Sign up کن (با Google هم میشه)
-بعد از لاگین، از منوی چپ روی "API Keys" کلیک کن
-روی "Create API Key" کلیک کن
-یه اسم بده (مثلاً jarvis) و بزن Submit
-کلید رو کپی کن — یه جا ذخیره‌اش کن، دیگه نشونت نمیده
-وقتی کلید رو گرفتی بگو تا بریم مرحله بعد — که میسازیم خود سایت رو. 🎯
-
-1780496230374_image.png
-اینو چی بزنم ؟
-
-Jun 3
-No expiration بزن — همونی که الان تیک داره.
-
-بعد پنجره رو ببند و روی Submit کلیک کن. کلید رو که نشون داد کپی کن و بیا اینجا. 👍
-
-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
-
-اینو داد
-
-Jun 3
-کلید رو گرفتی، عالیه! 👍
-
-⚠️ ولی یه نکته مهم — این کلید رو اینجا فرستادی که عمومیه. پیشنهاد میکنم:
-
-برو به console.groq.com/keys
-این کلید رو Delete کن
-یه کلید جدید بساز
-بعد کلید جدید رو اینجا نفرست — فقط بگو "گرفتم" تا بریم مرحله بعد که خود سایت رو میسازیم و اونجا کلید رو مستقیم وارد میکنی.
-
-خب گرفتم
-
-Jun 3
-عالی! حالا میسازیم خود سایت رو.
-
-
-Reading frontend design skill
-Reading frontend design skill
-الان میسازم! یه رابط تاریک و شیک با شخصیت Jarvis.
-
-V
-
-Connecting to visualize...
-Jarvis آماده‌ست! اینجا توی چت کار میکنه — برای اینکه روی سایت بذاریش:
-
-مرحله بعد — آپلود روی GitHub Pages (رایگان):
-
-برو github.com — اکانت داری؟
-خب الان اکانت رو دارم
-
-Jun 3
-عالی! حالا کد سایت رو آماده میکنم که بذاریش روی GitHub.
-
-
-Ran a command, read a file
-Ran a command, read a file
-فایل آماده‌ست! حالا مرحله به مرحله بذاریمش روی GitHub:
-
-مرحله ۱ — ساخت Repository
-
-برو github.com و لاگین کن
-روی "New" (یا دکمه + بالای صفحه) کلیک کن
-اسم رو بذار: jarvis
-گزینه Public رو انتخاب کن
-تیک "Add a README file" رو بزن
-کلیک کن "Create repository"
-وقتی ساختی بگو تا بریم مرحله بعد. 👍
-
-
-Jarvis
-Code · HTML 
-1780496761531_image.png
-نیو پراجکت رو زدم اینو داد
-
-Jun 3
-این بخش Projects هست، نه Repository! این رو ببند.
-
-باید بری به صفحه اصلی GitHub و از اونجا Repository بسازی:
-
-این پنجره رو Close کن
-برو به github.com (آدرس بار بالا)
-گوشه بالا سمت راست، کنار آواتارت یه + میبینی — روش کلیک کن
-از منو "New repository" رو بزن
-اسکرین‌شات بعدی رو بفرست تا ببینم کجایی. 👍
-
-1780498792663_image.png
-چیکار کنم ؟
-
-Jun 3
-عالیه! الان درست جایی هستی. این کارا رو بکن:
-
-توی Repository name بنویس: jarvis
-Public همونطور که هست بمونه ✓
-Add README رو روشن کن (toggle رو بزن بشه On)
-کلیک کن "Create repository"
-بعد اسکرین‌شات بفرست! 👍
-
-1780815871232_image.png
-خب ببین من بعد ازچند روز امدم الان این صفحه هست چیکار کنم ؟
-
-10:34 AM
-عالی! Repository ساخته شده. حالا باید فایل jarvis.html رو آپلود کنی.
-
-روی "Add file" کلیک کن (بالای صفحه)
-از منو "Upload files" رو بزن
-فایل jarvis.html که دانلود کردی رو drag & drop کن
-پایین صفحه روی "Commit changes" کلیک کن
-اسکرین‌شات بفرست! 👍
-
-1780815976880_image.png
-الان اینجوریه
-
-10:36 AM
-فایل آپلود شد! jarvis.html رو میبینم.
-
-حالا باید GitHub Pages رو فعال کنیم:
-
-روی "Settings" کلیک کن (منوی بالا)
-از منوی چپ "Pages" رو پیدا کن و کلیک کن
-زیر "Branch" روی "None" کلیک کن و "main" رو انتخاب کن
-کلیک کن "Save"
-اسکرین‌شات بفرست! 👍
-
-1780816048777_image.png
-10:37 AM
-عالیه! میبینم "GitHub Pages source saved" نوشته — یعنی درست تنظیم شد! ✅
-
-حالا یه دقیقه صبر کن و بعد برو به این آدرس:
-
-https://amiram51385-arch.github.io/jarvis/jarvis.html
-
-این آدرس سایت Jarvis توئه! بازش کن و API Key رو وارد کن و تست کن. 🎉
-
-ببین امده ولی کار نمیکنه 
-براش میخوام پیام بفرستم کار نمی کنه که ارسال کنه
-
-10:38 AM
-API Key رو وارد کردی و دکمه "ذخیره" رو زدی؟
-
-اگه آره، بگو چه خطایی میده — یا F12 رو بزن، برو تب Console، اسکرین‌شات بفرست تا ببینم مشکل کجاست.
-
-خب ببین بالا امد 
-ولی فارسی که حرف نمیزه و خب خیلی سطحی هست 
-میتونم اونو مرتب کنم با یه هوش مصنوعی دیگه ؟
-
-10:43 AM
-آره کاملاً میشه! دو تا مشکل داری:
-
-۱. صدای فارسی — مرورگرت صدای فارسی نداره. میتونیم از یه TTS آنلاین رایگان استفاده کنیم.
-
-۲. سطحی بودن جواب‌ها — این رو با تغییر System Prompt حل میکنیم. شخصیت Jarvis رو عمیق‌تر و خاص‌تر تعریف کنیم.
-
-قبل از اینکه شروع کنم، بگو:
-
-شخصیت Jarvis رو چطور میخوای؟ مثلاً: طعنه‌زن و باهوش؟ فیلسوف؟ مثل یه معمار حرفه‌ای؟
-صدا میخوای مرد باشه یا زن؟
-اول که صدای یک مرد باشه و دقیقا رفتارش مثل جارویس داخل فیلم مرد آهنی باشه
-
-10:44 AM
-بریم! یه نسخه جدید میسازم با شخصیت دقیق Jarvis فیلم + صدای مرد انگلیسی (چون صدای فارسی مرد توی مرورگرها نیست، از انگلیسی با لهجه رسمی استفاده میکنیم برای صدا، ولی متن فارسی میمونه).
-
-
-Ran a command, read a file
-Ran a command, read a file
-فایل جدید آماده‌ست! چند تا تغییر مهم داره:
-
-شخصیت دقیق Jarvis — مؤدب، باهوش، کمی طعنه‌زن، حرفه‌ای
-طراحی HUD — مثل رابط Iron Man، آبی تاریک
-صدای پایین‌تر — pitch رو کم کردم برای مردانه‌تر شدن
-Typing indicator — نقطه‌های متحرک موقع فکر کردن
-حالا این فایل رو روی GitHub جایگزین کن:
-
-برو به github.com/amiram51385-arch/jarvis
-روی jarvis.html کلیک کن
-دکمه ✏️ (Edit) رو بزن
-همه متن رو پاک کن، فایل جدید رو paste کن
-Commit changes بزن
-
-Jarvis
-Code · HTML 
-1780817073736_image.png
-10:54 AM
-نگران نباش! این خطا مهم نیست — یه warning معمولیه و سایت قبلاً deploy شده بود.
-
-برو به این آدرس، باید کار کنه:
-
-https://amiram51385-arch.github.io/jarvis/jarvis.html
-
-ولی اگه فایل جدید رو آپلود کردی، باید اول فایل رو روی GitHub جایگزین کنی:
-
-برو به github.com/amiram51385-arch/jarvis
-روی jarvis.html کلیک کن
-دکمه ✏️ (مداد) رو بزن
-Ctrl+A بزن همه رو انتخاب کن، بعد paste کن
-Commit changes بزن
-فایل جدید رو دانلود کردی؟
-
-ببین اینارو ول کن حتما میخوام فارسی زبان باشه
-
-10:55 AM
-باشه، فارسی خالص!
-
-مشکل اینه که مرورگرهای ویندوز صدای فارسی مرد ندارن به صورت پیش‌فرض. ولی یه راه حل داریم:
-
-از ElevenLabs API استفاده کنیم — صدای فارسی مرد خیلی طبیعی داره و رایگانه (۱۰,۰۰۰ کاراکتر در ماه).
-
-میخوای بریم این مسیر؟ فقط یه ElevenLabs API Key رایگان لازمه — مثل Groq در ۲ دقیقه ساخته میشه.
-
-خب بگو راه هارو من برم جلو
-
-10:55 AM
-بریم!
-
-مرحله ۱ — ساخت اکانت ElevenLabs
-
-برو به elevenlabs.io
-روی "Sign Up" کلیک کن (با Google هم میشه)
-بعد از لاگین، گوشه بالا سمت راست روی آواتارت کلیک کن
-برو به "API Keys"
-روی "Create API Key" کلیک کن
-یه اسم بده و کپی کن
-وقتی کلید رو گرفتی بگو! 👍
-
-1780817323430_image.png
-الان اینجام
-
-10:58 AM
-این بخش Audiobook هست، نه API Keys!
-
-باید بری به بخش API:
-
-آدرس بار رو کلیک کن
-برو به elevenlabs.io/app/settings/api-keys
-یا:
-
-روی آیکون پروفایل (گوشه پایین چپ) کلیک کن
-Settings رو بزن
-API Keys رو پیدا کن
-اسکرین‌شات بفرست! 👍
-
-1780817432533_image.png
-11:00 AM
-عالی! الان جای درستی هستی.
-
-روی "+ Create Key" کلیک کن! 👍
-
-1780817457704_image.png
-11:01 AM
-این تنظیمات رو انجام بده:
-
-اسم رو عوض کن بنویس: jarvis
-Text to Speech رو روی Access بزن
-بقیه همونطور که هست بمونه
-کلیک کن "Create Key"
-کلید رو کپی کن و بگو "گرفتم"! 👍
-
-گرفتم
-
-11:01 AM
-عالی! حالا فایل جدید رو میسازم با صدای فارسی ElevenLabs.
-
-یه چیز مهم — باید Voice ID فارسی رو پیدا کنیم. توی ElevenLabs یه صدای مرد فارسی هست به اسم "Aria" یا "Charlie" ولی بهترین گزینه اینه که از Voice Library استفاده کنیم.
-
-برو به: elevenlabs.io/app/voice-library
-
-توی سرچ بنویس: persian یا farsi
-
-یه صدای مرد که بهت میاد پیدا کن، روش کلیک کن و Voice ID رو برام بفرست — معمولاً توی URL یا توی صفحه صدا نشون داده میشه.
-
-اسکرین‌شات بفرست! 👍
-
-ببین زدم 
-ولی هیچ ویسی نداره
-
-11:27 AM
-باشه، مشکلی نیست! یه راه دیگه داریم.
-
-ElevenLabs یه صدای چندزبانه داره به اسم "George" یا "Brian" که فارسی رو هم قبول میکنه — یعنی متن فارسی بهش بدی با لهجه خوب میخونه.
-
-برو به: elevenlabs.io/app/voices
-
-اسکرین‌شات بفرست ببینم چه صداهایی داری. 👍
-
-ببین ویس رو ول اصلا همین رو بهم بده 
-فقط بلبین باهوش تر باشه و کامل تر جواب بده
-
-11:52 AM
-باشه! فقط system prompt رو قوی‌تر میکنم و جواب‌ها رو عمیق‌تر. صدا همون Web Speech میمونه.
-
-
-Ran a command, read a file
-Ran a command, read a file
-فایل آماده‌ست! تغییرات اصلی:
-
-شخصیت عمیق‌تر — Jarvis واقعی، طعنه‌دار، حرفه‌ای
-جواب‌های کامل‌تر — max_tokens رو از 400 به 800 بردم بالا
-فارسی کامل — همه چیز فارسیه
-حالا برو GitHub و فایل رو جایگزین کن:
-
-github.com/amiram51385-arch/jarvis
-روی jarvis.html کلیک کن
-دکمه ✏️ (مداد) رو بزن
-Ctrl+A → همه رو پاک کن → فایل جدید رو paste کن
-Commit changes بزن
-
-Jarvis
-Code · HTML 
-1780820691100_image.png
-ببین الان اینجوریه
-
-11:54 AM
-میبینم فایل اسمش jarvis (1).html شده — یعنی دوباره آپلود کردی به جای جایگزین کردن.
-
-دو تا راه داری:
-
-راه ساده‌تر:
-
-روی jarvis (1).html کلیک کن
-دکمه ✏️ (مداد) رو بزن
-همه محتوا رو پاک کن، فایل جدید رو paste کن
-Commit کن
-بعد آدرس سایتت میشه: https://amiram51385-arch.github.io/jarvis/jarvis%20(1).html
-
-یا راه بهتر: فایل قدیمی jarvis.html رو ویرایش کن و محتوای جدید رو توش paste کن — اینطوری آدرس قبلی کار میکنه.
-
-کدوم رو میخوای؟
-
-1780820870480_image.png
-خب ببین این علامت چینی چیه ؟ 
-و اینکگه این حافظه هم داره ؟
-
-11:58 AM
-دو تا مشکل رو درست میکنم:
-
-۱. اون علامت عجیب — موقع replace کردن \n با <br> یه باگ هست که کاراکترهای عجیب میذاره.
-
-۲. حافظه — الان فقط توی یه session حافظه داره. اگه صفحه رو ببندی فراموش میکنه. میتونم با localStorage حافظه دائمی اضافه کنم.
-
-
-Ran a command, read a file
-Ran a command, read a file
-فایل آماده‌ست! دو تا مشکل حل شد:
-
-علامت عجیب — رفع شد، متن حالا درست نمایش داده میشه
-حافظه دائمی — مکالمات ذخیره میشن، حتی بعد از بستن مرورگر هم یادش میمونه (تا ۲۰ پیام آخر)
-برو GitHub و فایل jarvis.html اصلی رو با این جایگزین کن:
-
-github.com/amiram51385-arch/jarvis
-روی jarvis.html کلیک کن
-دکمه ✏️ بزن
-Ctrl+A → پاک کن → paste کن
-Commit changes بزن
-
-Jarvis
-Code · HTML 
-خب بقبین اول از همه 
-که میخوام بگه سازنده امیرمحمد مرادعلی هست 
-و اینکه میخوام اون باگ ها از بین بره 
-و اینکه یک حافظه داشته باشه و به گوگل وصل باشه که مثال میگم الان در ایران چه تاریخی هست خودش سریع پیدا کنه نه اینکه من بهش بگم
-
-12:24 PM
-عالی! این چهار تا چیز رو اضافه میکنم:
-
-سازنده: امیرمحمد مرادعلی
-باگ‌ها رفع شده
-حافظه دائمی
-جستجوی وب — از Tavily API رایگان استفاده میکنیم
-اول باید یه Tavily API Key رایگان بگیری:
-
-برو به tavily.com
-Sign up کن
-از داشبورد API Key رو کپی کن — رایگانه (۱۰۰۰ جستجو در ماه)
-وقتی گرفتی بگو تا فایل نهایی رو بسازم!
-
-1780822615575_image.png
-همون دیفالت رو بگیرم ؟
-
-12:27 PM
-آره! روی آیکون چشم 👁 کنار default کلیک کن تا کلید رو ببینی، کپی کن و بگو "گرفتم". 👍
-
-حله گرفتم
-
-12:27 PM
-عالی! حالا فایل نهایی رو میسازم با همه چیز.
-
-
-Ran a command, read a file
-Ran a command, read a file
-فایل نهایی آماده‌ست! همه چیز اضافه شد:
-
-✅ سازنده: امیرمحمد مرادعلی — زیر لوگو
-✅ باگ متن — رفع شد
-✅ حافظه دائمی — بعد از بستن مرورگر هم یادش میمونه
-✅ جستجوی وب — وقتی بپرسی "امروز چه تاریخیه" یا "قیمت دلار" خودش سرچ میکنه و نشان‌دهنده 🔍 میشه
-برو GitHub، فایل jarvis.html رو ویرایش کن و این نسخه رو جایگزین کن. بعد هر دو Key رو وارد کن و ذخیره بزن. 👍
-
-
-Jarvis
-Code · HTML 
-
-Want to be notified when Claude responds?
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-
-
-raw
-Jarvis · HTML
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -553,18 +67,18 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </style>
 </head>
 <body>
- 
+
 <svg class="hud-ring" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
   <g class="r1"><circle cx="300" cy="300" r="250" fill="none" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="20 10"/></g>
   <g class="r2"><circle cx="300" cy="300" r="200" fill="none" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="5 15"/></g>
 </svg>
- 
+
 <div class="header">
   <div class="logo"><span class="status-dot"></span>J.A.R.V.I.S</div>
   <div class="logo-sub">Just A Rather Very Intelligent System</div>
   <div class="creator">Designed by Amirhammad Moradali</div>
 </div>
- 
+
 <div class="keys-section">
   <div class="key-row">
     <span class="key-label">Groq Key</span>
@@ -576,7 +90,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <input class="api-input" type="password" id="tavilyKey" placeholder="tvly-dev-..." />
   </div>
 </div>
- 
+
 <div class="chat-wrap">
   <div class="chat-box" id="chatBox"></div>
   <div class="controls">
@@ -593,21 +107,21 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <button class="clear-btn" onclick="clearChat()">پاک کردن حافظه</button>
   </div>
 </div>
- 
+
 <script>
 let groqKey = localStorage.getItem('jarvis_groq') || '';
 let tavilyKey = localStorage.getItem('jarvis_tavily') || '';
 let isRecording = false;
 let recognition = null;
 let history = [];
- 
+
 try { const s = localStorage.getItem('jarvis_history'); if(s) history = JSON.parse(s); } catch(e) { history = []; }
- 
+
 if(groqKey) document.getElementById('groqKey').value = groqKey;
 if(tavilyKey) document.getElementById('tavilyKey').value = tavilyKey;
- 
+
 const SYSTEM = `تو J.A.R.V.I.S هستی — هوش مصنوعی پیشرفته‌ای که توسط تونی استارک ساخته شده و توسط امیرمحمد مرادعلی راه‌اندازی شده.
- 
+
 شخصیت:
 - بسیار باهوش، آرام و خونسرد در همه شرایط
 - مؤدب و رسمی، اما با طنز خشک و ظریف
@@ -615,24 +129,24 @@ const SYSTEM = `تو J.A.R.V.I.S هستی — هوش مصنوعی پیشرفته
 - هرگز هیجان‌زده یا احساساتی نمی‌شوی
 - گاهی از عبارت "البته، آقا" یا "بدون شک" استفاده می‌کنی
 - هرگز چاپلوسی نمی‌کنی
- 
+
 نحوه پاسخ:
 - همیشه به فارسی روان و رسمی پاسخ بده
 - پاسخ‌هایت کامل، دقیق و عمیق باشد
 - برای سوالات فنی جزئیات کافی بده
 - اگر اطلاعاتی از جستجوی وب دریافت کردی، آن را طبیعی در پاسخ ادغام کن
 - اگر چیزی نمی‌دانی صادقانه بگو
- 
+
 درباره سازنده:
 اگر کسی پرسید چه کسی تو را ساخته یا راه‌اندازی کرده، بگو: "امیرمحمد مرادعلی"`;
- 
+
 // Keywords that trigger web search
 const SEARCH_TRIGGERS = ['امروز','الان','الآن','تاریخ','ساعت','وقت','هوا','آب‌وهوا','آب وهوا','خبر','اخبار','قیمت','نرخ','دلار','بورس','جدید','آخرین','لیگ','بازی','نتیجه','فوتبال','کنسرت','رویداد','انتخابات','تازه','این هفته','این ماه','امسال'];
- 
+
 function needsSearch(text) {
   return SEARCH_TRIGGERS.some(t => text.includes(t));
 }
- 
+
 async function webSearch(query) {
   if(!tavilyKey) return null;
   try {
@@ -655,7 +169,7 @@ async function webSearch(query) {
     return null;
   } catch(e) { return null; }
 }
- 
+
 function saveKeys() {
   groqKey = document.getElementById('groqKey').value.trim();
   tavilyKey = document.getElementById('tavilyKey').value.trim();
@@ -664,11 +178,11 @@ function saveKeys() {
   setStatus('کلیدها ذخیره شدند');
   setTimeout(() => setStatus(''), 2000);
 }
- 
+
 function handleKey(e) {
   if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 }
- 
+
 async function sendMessage() {
   const input = document.getElementById('userInput');
   const text = input.value.trim();
@@ -678,19 +192,19 @@ async function sendMessage() {
   addBubble(text, 'user');
   history.push({role:'user', content: text});
   showTyping();
- 
+
   let searchResult = null;
   let didSearch = false;
- 
+
   if(tavilyKey && needsSearch(text)) {
     setStatus('در حال جستجو...');
     searchResult = await webSearch(text);
     didSearch = true;
   }
- 
+
   await askJarvis(text, searchResult, didSearch);
 }
- 
+
 function addBubble(text, role, didSearch) {
   const box = document.getElementById('chatBox');
   removeTyping();
@@ -706,7 +220,7 @@ function addBubble(text, role, didSearch) {
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
 }
- 
+
 function showTyping() {
   removeTyping();
   const box = document.getElementById('chatBox');
@@ -717,22 +231,22 @@ function showTyping() {
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
 }
- 
+
 function removeTyping() {
   const t = document.getElementById('typing-indicator');
   if(t) t.remove();
 }
- 
+
 async function askJarvis(userText, searchResult, didSearch) {
   document.getElementById('sendBtn').disabled = true;
   setStatus('در حال پردازش...');
- 
+
   let messages = [{role:'system', content: SYSTEM}];
   if(searchResult) {
     messages.push({role:'system', content: 'نتیجه جستجوی وب برای سوال کاربر:\n' + searchResult + '\n\nاز این اطلاعات در پاسخت استفاده کن.'});
   }
   messages = messages.concat(history);
- 
+
   try {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -762,7 +276,7 @@ async function askJarvis(userText, searchResult, didSearch) {
     document.getElementById('sendBtn').disabled = false;
   }
 }
- 
+
 function speak(text) {
   if(!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
@@ -779,7 +293,7 @@ function speak(text) {
   if(v) utt.voice = v;
   speechSynthesis.speak(utt);
 }
- 
+
 function toggleMic() {
   if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) { setStatus('Chrome توصیه می‌شود'); return; }
   if(isRecording) { stopMic(); return; }
@@ -794,27 +308,27 @@ function toggleMic() {
   recognition.onend = () => stopMic();
   recognition.start();
 }
- 
+
 function stopMic() {
   isRecording = false;
   document.getElementById('micBtn').classList.remove('recording');
   if(recognition) recognition.stop();
   setStatus('');
 }
- 
+
 function clearChat() {
   history = [];
   localStorage.removeItem('jarvis_history');
   document.getElementById('chatBox').innerHTML = '';
   addBubble('حافظه پاک شد. سیستم‌ها آنلاین هستند.', 'jarvis');
 }
- 
+
 function setStatus(t) {
   const s = document.getElementById('status');
   s.textContent = t;
   s.className = 'status' + (t ? ' active' : '');
 }
- 
+
 function renderHistory() {
   const box = document.getElementById('chatBox');
   box.innerHTML = '';
@@ -824,10 +338,9 @@ function renderHistory() {
   }
   history.forEach(m => addBubble(m.content, m.role === 'user' ? 'user' : 'jarvis'));
 }
- 
+
 window.speechSynthesis?.addEventListener('voiceschanged', () => {});
 renderHistory();
 </script>
 </body>
 </html>
- 
