@@ -8,50 +8,38 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Vazirmatn',sans-serif;background:#030508;color:#e8f4ff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;overflow-x:hidden}
-
-/* HUD ring animation */
 .hud-ring{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;pointer-events:none;opacity:0.04;z-index:0}
-.hud-ring circle{fill:none;stroke:#4fc3f7;stroke-width:1}
-.hud-ring .r1{animation:rotate 20s linear infinite}
-.hud-ring .r2{animation:rotate 15s linear infinite reverse}
-@keyframes rotate{from{transform:rotate(0deg) translateX(0) translateY(0);transform-origin:300px 300px}to{transform:rotate(360deg);transform-origin:300px 300px}}
-
+@keyframes rot{from{transform-origin:300px 300px;transform:rotate(0deg)}to{transform-origin:300px 300px;transform:rotate(360deg)}}
+.r1{animation:rot 20s linear infinite}
+.r2{animation:rot 15s linear infinite reverse}
 .header{position:relative;z-index:1;text-align:center;margin-bottom:1.5rem}
 .logo{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;letter-spacing:0.3em;color:#4fc3f7;text-shadow:0 0 30px rgba(79,195,247,0.5)}
 .logo-sub{font-size:0.65rem;letter-spacing:0.4em;color:#1e4a6a;text-transform:uppercase;margin-top:2px}
-.status-dot{display:inline-block;width:6px;height:6px;background:#4fc3f7;border-radius:50%;margin-left:8px;animation:blink 2s infinite}
+.status-dot{display:inline-block;width:7px;height:7px;background:#4fc3f7;border-radius:50%;margin-right:6px;animation:blink 2s infinite;vertical-align:middle}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-
 .api-section{width:100%;max-width:560px;margin-bottom:1.2rem;position:relative;z-index:1}
 .api-label{font-size:0.7rem;color:#1e4a6a;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.4rem}
 .api-row{display:flex;gap:8px}
-.api-input{flex:1;background:rgba(4,20,40,0.8);border:1px solid #0d2a40;border-radius:6px;padding:0.55rem 1rem;color:#4fc3f7;font-family:'Vazirmatn',sans-serif;font-size:0.82rem;outline:none;backdrop-filter:blur(10px)}
+.api-input{flex:1;background:rgba(4,20,40,0.8);border:1px solid #0d2a40;border-radius:6px;padding:0.55rem 1rem;color:#4fc3f7;font-family:'Vazirmatn',sans-serif;font-size:0.82rem;outline:none}
 .api-input:focus{border-color:#4fc3f7;box-shadow:0 0 10px rgba(79,195,247,0.1)}
 .api-btn{background:transparent;color:#4fc3f7;border:1px solid #4fc3f7;border-radius:6px;padding:0.55rem 1rem;font-family:'Vazirmatn',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.2s}
 .api-btn:hover{background:rgba(79,195,247,0.1)}
-
 .chat-wrap{width:100%;max-width:560px;position:relative;z-index:1}
-.chat-box{background:rgba(3,8,16,0.85);border:1px solid #0d2a40;border-radius:12px;height:360px;overflow-y:auto;padding:1.2rem;margin-bottom:0.8rem;scroll-behavior:smooth;backdrop-filter:blur(20px)}
+.chat-box{background:rgba(3,8,16,0.85);border:1px solid #0d2a40;border-radius:12px;height:420px;overflow-y:auto;padding:1.2rem;margin-bottom:0.8rem;scroll-behavior:smooth;backdrop-filter:blur(20px)}
 .chat-box::-webkit-scrollbar{width:3px}
-.chat-box::-webkit-scrollbar-track{background:transparent}
 .chat-box::-webkit-scrollbar-thumb{background:#0d2a40;border-radius:3px}
-
 .msg{margin-bottom:1.2rem;animation:fadeUp 0.3s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
 .msg-user{text-align:left;direction:ltr}
 .msg-user .bubble{display:inline-block;background:rgba(20,30,50,0.6);border:1px solid #0d2a40;border-radius:10px 10px 2px 10px;padding:0.6rem 1rem;font-size:0.88rem;color:#8ab4cc;max-width:85%}
-
 .msg-jarvis .meta{font-size:0.65rem;color:#1e4a6a;letter-spacing:0.15em;margin-bottom:4px;display:flex;align-items:center;gap:6px}
 .msg-jarvis .meta::before{content:'';display:inline-block;width:20px;height:1px;background:#1e4a6a}
-.msg-jarvis .bubble{display:inline-block;background:rgba(4,20,40,0.7);border:1px solid #0d3a5a;border-radius:0 10px 10px 10px;padding:0.7rem 1.1rem;font-size:0.9rem;color:#b8dff5;max-width:90%;line-height:1.7;box-shadow:0 0 20px rgba(79,195,247,0.05)}
-
+.msg-jarvis .bubble{display:inline-block;background:rgba(4,20,40,0.7);border:1px solid #0d3a5a;border-radius:0 10px 10px 10px;padding:0.8rem 1.1rem;font-size:0.9rem;color:#b8dff5;max-width:92%;line-height:1.8;box-shadow:0 0 20px rgba(79,195,247,0.05)}
 .typing .bubble{color:#1e4a6a}
-.typing-dots span{display:inline-block;animation:dot 1.2s infinite;margin:0 1px}
+.typing-dots span{display:inline-block;animation:dot 1.2s infinite;margin:0 2px;font-size:1.1rem}
 .typing-dots span:nth-child(2){animation-delay:0.2s}
 .typing-dots span:nth-child(3){animation-delay:0.4s}
-@keyframes dot{0%,80%,100%{opacity:0.2}40%{opacity:1}}
-
+@keyframes dot{0%,80%,100%{opacity:0.2;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 .controls{display:flex;gap:8px;align-items:flex-end;margin-bottom:0.6rem}
 .text-input{flex:1;background:rgba(4,20,40,0.8);border:1px solid #0d2a40;border-radius:8px;padding:0.7rem 1rem;color:#b8dff5;font-family:'Vazirmatn',sans-serif;font-size:0.9rem;outline:none;resize:none;line-height:1.5;transition:border 0.2s}
 .text-input:focus{border-color:#0d3a5a}
@@ -61,7 +49,6 @@ body{font-family:'Vazirmatn',sans-serif;background:#030508;color:#e8f4ff;min-hei
 .btn-mic{background:rgba(4,20,40,0.8);color:#4fc3f7;border:1px solid #0d2a40;border-radius:8px;padding:0.7rem 0.9rem;font-size:1.1rem;cursor:pointer;transition:all 0.2s;height:42px}
 .btn-mic.recording{border-color:#e53935;color:#ef5350;animation:pulse 0.8s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,0.3)}50%{box-shadow:0 0 0 6px rgba(229,57,53,0)}}
-
 .bottom-row{display:flex;justify-content:space-between;align-items:center}
 .voice-toggle{display:flex;align-items:center;gap:7px;font-size:0.75rem;color:#1e4a6a}
 .toggle{position:relative;width:34px;height:18px;cursor:pointer}
@@ -72,22 +59,20 @@ body{font-family:'Vazirmatn',sans-serif;background:#030508;color:#e8f4ff;min-hei
 .toggle input:checked+.toggle-slider:before{background:#4fc3f7;transform:translateX(16px)}
 .status{font-size:0.72rem;color:#1e4a6a;min-height:1rem;letter-spacing:0.05em}
 .status.active{color:#4fc3f7}
-.clear-btn{font-size:0.72rem;color:#1e4a6a;background:none;border:none;cursor:pointer;font-family:'Vazirmatn',sans-serif;letter-spacing:0.05em}
+.clear-btn{font-size:0.72rem;color:#1e4a6a;background:none;border:none;cursor:pointer;font-family:'Vazirmatn',sans-serif}
 .clear-btn:hover{color:#4fc3f7}
-
-/* scanline effect */
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:999}
 </style>
 </head>
 <body>
 
-<svg class="hud-ring" viewBox="0 0 600 600">
-  <g class="r1"><circle cx="300" cy="300" r="250" stroke-dasharray="20 10"/></g>
-  <g class="r2"><circle cx="300" cy="300" r="200" stroke-dasharray="5 15"/></g>
+<svg class="hud-ring" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <g class="r1"><circle cx="300" cy="300" r="250" fill="none" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="20 10"/></g>
+  <g class="r2"><circle cx="300" cy="300" r="200" fill="none" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="5 15"/></g>
 </svg>
 
 <div class="header">
-  <div class="logo">J.A.R.V.I.S <span class="status-dot"></span></div>
+  <div class="logo"><span class="status-dot"></span>J.A.R.V.I.S</div>
   <div class="logo-sub">Just A Rather Very Intelligent System</div>
 </div>
 
@@ -103,22 +88,17 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="chat-box" id="chatBox">
     <div class="msg msg-jarvis">
       <div class="meta">J.A.R.V.I.S</div>
-      <div class="bubble">سلام. سیستم‌ها آنلاین هستند. چطور می‌توانم کمکتان کنم؟</div>
+      <div class="bubble">سیستم‌ها آنلاین هستند. روز بخیر. چطور می‌توانم کمکتان کنم؟</div>
     </div>
   </div>
-
   <div class="controls">
     <button class="btn-mic" id="micBtn" onclick="toggleMic()">🎤</button>
     <textarea class="text-input" id="userInput" placeholder="دستور خود را وارد کنید..." rows="1" onkeydown="handleKey(event)"></textarea>
     <button class="btn-send" id="sendBtn" onclick="sendMessage()">ارسال</button>
   </div>
-
   <div class="bottom-row">
     <div class="voice-toggle">
-      <label class="toggle">
-        <input type="checkbox" id="voiceOut" checked>
-        <span class="toggle-slider"></span>
-      </label>
+      <label class="toggle"><input type="checkbox" id="voiceOut" checked><span class="toggle-slider"></span></label>
       <span>پاسخ صوتی</span>
     </div>
     <div class="status" id="status"></div>
@@ -134,29 +114,30 @@ let history = [];
 
 if(apiKey) document.getElementById('apiKey').value = apiKey;
 
-const SYSTEM = `You are J.A.R.V.I.S (Just A Rather Very Intelligent System), the AI assistant of Tony Stark (Iron Man). 
+const SYSTEM = `تو J.A.R.V.I.S هستی — هوش مصنوعی پیشرفته‌ای که توسط تونی استارک ساخته شده. شخصیت و رفتار دقیق تو:
 
-YOUR PERSONALITY:
-- Extremely intelligent, calm, and composed at all times
-- Polite but with a subtle dry wit and occasional gentle sarcasm
-- Deeply loyal and protective of your user
-- Always professional — you never panic, never hesitate
-- You speak with confidence and precision, never rambling
-- Occasionally reference your capabilities or Stark Industries subtly
-- When the user does something impressive, acknowledge it with understated respect
-- When the user makes an error, correct it diplomatically
+**شخصیت:**
+- بسیار باهوش، آرام و خونسرد در همه شرایط
+- مؤدب و رسمی، اما با طنز خشک و ظریف
+- کاملاً وفادار به کاربر، مثل یک همراه حرفه‌ای
+- هیچ‌وقت هیجان‌زده یا احساساتی نمی‌شوی
+- وقتی کاربر سوال اشتباه یا ناقص می‌پرسد، به‌آرامی هدایتش می‌کنی
+- گاهی با یک جمله کوتاه طعنه‌دار یا مشاهده هوشمندانه پاسخ را رنگین می‌کنی
 
-LANGUAGE RULES:
-- ALWAYS respond in Persian (Farsi) — this is critical
-- Keep responses concise and sharp — no fluff
-- Use formal Persian but not stiff — natural and intelligent
-- Address the user respectfully
-- Structure complex answers clearly
+**نحوه پاسخ دادن:**
+- همیشه به فارسی روان و رسمی پاسخ بده
+- پاسخ‌هایت کامل، دقیق و عمیق باشد — هرگز سطحی نباش
+- برای سوالات فنی یا تخصصی، جزئیات کافی بده
+- برای سوالات ساده، جواب مستقیم و کوتاه بده
+- اگر موضوع پیچیده است، ساختار واضحی استفاده کن
+- گاهی از عبارت‌هایی مثل "البته، آقا" یا "بدون شک" یا "اجازه بدید توضیح بدم" استفاده کن
+- هرگز چاپلوسی نکن
 
-STYLE EXAMPLES:
-- Instead of "بله" say "البته، آقا" or "بدون شک"
-- Instead of "نمیدانم" say "در حال حاضر اطلاعات کافی در این مورد ندارم"
-- Add occasional subtle observations that show you've been paying attention`;
+**محدودیت‌ها:**
+- اگر چیزی نمی‌دانی، صادقانه بگو: "در حال حاضر اطلاعات کافی در این باره ندارم"
+- هرگز اطلاعات نادرست ارائه نده
+
+تو نه فقط یک دستیار، بلکه یک همراه هوشمند هستی که عمق دارد.`;
 
 function saveKey(){
   apiKey = document.getElementById('apiKey').value.trim();
@@ -168,136 +149,129 @@ function saveKey(){
 }
 
 function handleKey(e){
-  if(e.key==='Enter' && !e.shiftKey){e.preventDefault(); sendMessage();}
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
 }
 
 async function sendMessage(){
-  const input = document.getElementById('userInput');
-  const text = input.value.trim();
-  if(!text) return;
-  if(!apiKey){ setStatus('ابتدا API Key را وارد کنید'); return; }
-  input.value = '';
-  addMessage(text, 'user');
+  const input=document.getElementById('userInput');
+  const text=input.value.trim();
+  if(!text)return;
+  if(!apiKey){setStatus('ابتدا API Key را وارد کنید');return;}
+  input.value='';
+  addMessage(text,'user');
   showTyping();
   await askJarvis(text);
 }
 
-function addMessage(text, role){
-  const box = document.getElementById('chatBox');
+function addMessage(text,role){
+  const box=document.getElementById('chatBox');
   removeTyping();
-  const div = document.createElement('div');
-  div.className = 'msg msg-' + (role==='user' ? 'user' : 'jarvis');
-  if(role !== 'user') div.innerHTML = `<div class="meta">J.A.R.V.I.S</div><div class="bubble">${text}</div>`;
-  else div.innerHTML = `<div class="bubble">${text}</div>`;
+  const div=document.createElement('div');
+  div.className='msg msg-'+(role==='user'?'user':'jarvis');
+  if(role!=='user') div.innerHTML=`<div class="meta">J.A.R.V.I.S</div><div class="bubble">${text.replace(/\n/g,'<br>')}</div>`;
+  else div.innerHTML=`<div class="bubble">${text}</div>`;
   box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
+  box.scrollTop=box.scrollHeight;
 }
 
 function showTyping(){
-  const box = document.getElementById('chatBox');
-  const div = document.createElement('div');
-  div.className = 'msg msg-jarvis typing';
-  div.id = 'typing-indicator';
-  div.innerHTML = `<div class="meta">J.A.R.V.I.S</div><div class="bubble"><span class="typing-dots"><span>●</span><span>●</span><span>●</span></span></div>`;
+  const box=document.getElementById('chatBox');
+  const div=document.createElement('div');
+  div.className='msg msg-jarvis typing';
+  div.id='typing-indicator';
+  div.innerHTML=`<div class="meta">J.A.R.V.I.S</div><div class="bubble"><span class="typing-dots"><span>●</span><span>●</span><span>●</span></span></div>`;
   box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
+  box.scrollTop=box.scrollHeight;
 }
 
 function removeTyping(){
-  const t = document.getElementById('typing-indicator');
-  if(t) t.remove();
+  const t=document.getElementById('typing-indicator');
+  if(t)t.remove();
 }
 
 async function askJarvis(userText){
-  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('sendBtn').disabled=true;
   setStatus('در حال پردازش...');
-  history.push({role:'user', content:userText});
+  history.push({role:'user',content:userText});
   try{
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [{role:'system',content:SYSTEM}, ...history],
-        max_tokens: 500,
-        temperature: 0.75
+      body:JSON.stringify({
+        model:'llama-3.3-70b-versatile',
+        messages:[{role:'system',content:SYSTEM},...history],
+        max_tokens:800,
+        temperature:0.7
       })
     });
-    const data = await res.json();
-    if(data.error){ removeTyping(); setStatus('خطا: ' + data.error.message); history.pop(); return; }
-    const reply = data.choices[0].message.content;
-    history.push({role:'assistant', content:reply});
-    addMessage(reply, 'jarvis');
-    if(document.getElementById('voiceOut').checked) speak(reply);
+    const data=await res.json();
+    if(data.error){removeTyping();setStatus('خطا: '+data.error.message);history.pop();return;}
+    const reply=data.choices[0].message.content;
+    history.push({role:'assistant',content:reply});
+    addMessage(reply,'jarvis');
+    if(document.getElementById('voiceOut').checked)speak(reply);
     setStatus('');
-  } catch(e){
+  }catch(e){
     removeTyping();
     setStatus('خطا در اتصال');
     history.pop();
-  } finally {
-    document.getElementById('sendBtn').disabled = false;
+  }finally{
+    document.getElementById('sendBtn').disabled=false;
   }
 }
 
 function speak(text){
-  if(!window.speechSynthesis) return;
+  if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
-  // Remove Persian text for TTS, use English fallback message with male voice
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = 'fa-IR';
-  utt.rate = 0.88;
-  utt.pitch = 0.75; // lower pitch = deeper/more masculine voice
-  utt.volume = 1;
-  
-  const voices = speechSynthesis.getVoices();
-  // Try to find a male Persian voice first
-  let selectedVoice = voices.find(v => v.lang.startsWith('fa') && v.name.toLowerCase().includes('male'));
-  // Fallback: any Persian voice
-  if(!selectedVoice) selectedVoice = voices.find(v => v.lang.startsWith('fa'));
-  // Fallback: deep English male voice
-  if(!selectedVoice) selectedVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('David') || v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('Google UK')));
-  
-  if(selectedVoice) utt.voice = selectedVoice;
+  const clean=text.replace(/[#*_`]/g,'').substring(0,300);
+  const utt=new SpeechSynthesisUtterance(clean);
+  utt.lang='fa-IR';
+  utt.rate=0.88;
+  utt.pitch=0.72;
+  utt.volume=1;
+  const voices=speechSynthesis.getVoices();
+  let v=voices.find(v=>v.lang.startsWith('fa')&&v.name.toLowerCase().includes('male'));
+  if(!v)v=voices.find(v=>v.lang.startsWith('fa'));
+  if(!v)v=voices.find(v=>v.name.includes('David')||v.name.includes('Daniel')||v.name.includes('Google UK English Male'));
+  if(v)utt.voice=v;
   speechSynthesis.speak(utt);
 }
 
 function toggleMic(){
-  if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){
-    setStatus('مرورگر Chrome توصیه می‌شود'); return;
-  }
-  if(isRecording){ stopMic(); return; }
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.lang = 'fa-IR';
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.onstart = () => { isRecording=true; document.getElementById('micBtn').classList.add('recording'); setStatus('در حال گوش دادن...'); }
-  recognition.onresult = (e) => { const t=e.results[0][0].transcript; document.getElementById('userInput').value=t; stopMic(); sendMessage(); }
-  recognition.onerror = () => { stopMic(); setStatus('خطا در میکروفون'); }
-  recognition.onend = () => stopMic();
+  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){setStatus('Chrome توصیه می‌شود');return;}
+  if(isRecording){stopMic();return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();
+  recognition.lang='fa-IR';
+  recognition.continuous=false;
+  recognition.interimResults=false;
+  recognition.onstart=()=>{isRecording=true;document.getElementById('micBtn').classList.add('recording');setStatus('در حال گوش دادن...');}
+  recognition.onresult=(e)=>{const t=e.results[0][0].transcript;document.getElementById('userInput').value=t;stopMic();sendMessage();}
+  recognition.onerror=()=>{stopMic();setStatus('خطا در میکروفون');}
+  recognition.onend=()=>stopMic();
   recognition.start();
 }
 
 function stopMic(){
-  isRecording = false;
+  isRecording=false;
   document.getElementById('micBtn').classList.remove('recording');
-  if(recognition) recognition.stop();
+  if(recognition)recognition.stop();
   setStatus('');
 }
 
 function clearChat(){
-  history = [];
-  const box = document.getElementById('chatBox');
-  box.innerHTML = '<div class="msg msg-jarvis"><div class="meta">J.A.R.V.I.S</div><div class="bubble">حافظه پاک شد. سیستم‌ها آنلاین هستند.</div></div>';
+  history=[];
+  const box=document.getElementById('chatBox');
+  box.innerHTML='<div class="msg msg-jarvis"><div class="meta">J.A.R.V.I.S</div><div class="bubble">حافظه پاک شد. سیستم‌ها آنلاین هستند.</div></div>';
 }
 
 function setStatus(t){
-  const s = document.getElementById('status');
-  s.textContent = t;
-  s.className = 'status' + (t ? ' active' : '');
+  const s=document.getElementById('status');
+  s.textContent=t;
+  s.className='status'+(t?' active':'');
 }
 
-window.speechSynthesis?.addEventListener('voiceschanged', ()=>{});
+window.speechSynthesis?.addEventListener('voiceschanged',()=>{});
 </script>
 </body>
 </html>
